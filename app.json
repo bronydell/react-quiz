@@ -1,4 +1,5 @@
 {
-  "name": "reactquiz",
-  "displayName": "reactquiz"
+  "expo": {
+    "sdkVersion": "25.0.0"
+  }
 }
