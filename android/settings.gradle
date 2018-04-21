@@ -1,0 +1,3 @@
+rootProject.name = 'reactquiz'
+
+include ':app'
