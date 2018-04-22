@@ -15,18 +15,8 @@ class Application extends React.PureComponent {
     Font
       .loadAsync({
         /* eslint-disable global-require, quote-props */
-        'Roboto-Black': require('src/lib/fonts/Roboto-Black.ttf'),
-        'Roboto-BlackItalic': require('src/lib/fonts/Roboto-BlackItalic.ttf'),
-        'Roboto-Bold': require('src/lib/fonts/Roboto-Bold.ttf'),
-        'Roboto-BoldItalic': require('src/lib/fonts/Roboto-BoldItalic.ttf'),
-        'Roboto-Light': require('src/lib/fonts/Roboto-Light.ttf'),
-        'Roboto-LightItalic': require('src/lib/fonts/Roboto-LightItalic.ttf'),
-        'Roboto-Medium': require('src/lib/fonts/Roboto-Medium.ttf'),
-        'Roboto-MediumItalic': require('src/lib/fonts/Roboto-MediumItalic.ttf'),
-        'Roboto': require('src/lib/fonts/Roboto-Regular.ttf'),
-        'Roboto-Italic': require('src/lib/fonts/Roboto-RegularItalic.ttf'),
-        'Roboto-Thin': require('src/lib/fonts/Roboto-Thin.ttf'),
-        'Roboto-ThinItalic': require('src/lib/fonts/Roboto-ThinItalic.ttf'),
+        'Dimbo-Italic': require('src/lib/fonts/Dimbo-Italic.ttf'),
+        'Dimbo': require('src/lib/fonts/Dimbo-Regular.ttf'),
         /* eslint-enable */
       })
       .then(() => this.setState({ isReady: true }))

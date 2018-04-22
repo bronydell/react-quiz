@@ -1,8 +1,8 @@
 import React from 'react'
-import WelcomeMessage from 'src/containers/WelcomeMessage'
+import Menu from 'src/components/Menu'
 
 const WelcomeScreen = () => pug`
-  WelcomeMessage
+  Menu
 `
 
 export default WelcomeScreen

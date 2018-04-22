@@ -2,18 +2,17 @@ import { StackNavigator } from 'react-navigation'
 
 import WelcomeScreen from 'src/screens/Welcome'
 
+const navigationOptions = {
+  headerMode: 'None',
+}
+
 const RootNavigator = StackNavigator({
   Welcome: {
     screen: WelcomeScreen,
-    navigationOptions: {
-      title: 'Welcome',
-    },
+    navigationOptions,
   },
 }, {
   initialRouteName: 'Welcome',
-  navigationOptions: {
-    headerBackTitle: 'Back',
-  },
 })
 
 export default RootNavigator
