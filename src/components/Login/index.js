@@ -49,7 +49,9 @@ class Login extends React.Component {
                 onPress=this.onLogin
               ) Login
           RowWrapper
-            Button I don't have an account
+            Button(
+              onPress=this.toRegister
+            ) I don't have an account
     `
   }
 
@@ -61,6 +63,10 @@ class Login extends React.Component {
 
   onLogin = () => {
     this.props.login(this.state.email, this.state.password)
+  }
+
+  toRegister = () => {
+    this.props.setScreen('register')
   }
 
   onChangeEmail = (text) => {
