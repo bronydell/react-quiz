@@ -1,17 +1,43 @@
 import { all, call, put, takeEvery } from 'redux-saga/effects'
+import firebase from 'firebase'
 import * as actions from './actions'
+import * as persistence from './persistence'
 
-function* logIn() {
-  // yield put(actions.updateColor.success())
+function* logIn({ payload }) {
+  try {
+    const user = yield firebase.auth()
+      .signInWithEmailAndPassword(payload.email, payload.password)
+    yield persistence.setLogin(payload.email)
+    yield persistence.setPassword(payload.password)
+    yield put(actions.logIn.success(user))
+  } catch (error) {
+    yield put(actions.logIn.failure(error))
+  }
 }
 
 function* register({ payload }) {
   // yield put(actions.updateColor.success())
-  yield console.log(payload)
+  try {
+    const user = yield firebase.auth()
+      .createUserWithEmailAndPassword(payload.email, payload.password)
+    yield persistence.setLogin(payload.email)
+    yield persistence.setPassword(payload.password)
+    yield put(actions.register.success(user))
+  } catch (error) {
+    yield put(actions.register.failure(error))
+  }
 }
 
 function* getUser() {
-  // yield put(actions.updateColor.success())
+  try {
+    const email = yield persistence.getLogin()
+    const password = yield persistence.getPassword()
+    const user = yield firebase.auth()
+      .signInWithEmailAndPassword(email, password)
+    yield put(actions.getUser.success(user))
+  } catch (error) {
+    yield put(actions.getUser.success(null))
+  }
 }
 
 export default function* () {

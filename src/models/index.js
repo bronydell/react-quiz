@@ -7,7 +7,7 @@ import ProfileSaga from './Profile/saga'
 
 export default {
   reducers: {
-    welcome: ProfileReducer,
+    profile: ProfileReducer,
   },
   sagas: function* sagas() {
     yield all([

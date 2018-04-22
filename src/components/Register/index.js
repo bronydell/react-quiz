@@ -56,7 +56,7 @@ class Register extends React.Component {
             RowWrapper
               Button(onPress=this.onRegister) Register
           RowWrapper
-            Button Oh... Wait. I have account!
+            Button(onPress=this.toLogin) Oh... Wait. I have account!
     `
   }
 
@@ -68,6 +68,10 @@ class Register extends React.Component {
 
   onRegister = () => {
     this.props.register(this.state.email, this.state.password)
+  }
+
+  toLogin = () => {
+    this.props.setScreen('login')
   }
 
   onChangeRepeatPassword = (text) => {
