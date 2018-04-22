@@ -2,16 +2,16 @@
 
 import { all, call } from 'redux-saga/effects'
 
-import WelcomeReducer from './Welcome/reducer'
-import WelcomeSaga from './Welcome/saga'
+import ProfileReducer from './Profile/reducer'
+import ProfileSaga from './Profile/saga'
 
 export default {
   reducers: {
-    welcome: WelcomeReducer,
+    welcome: ProfileReducer,
   },
   sagas: function* sagas() {
     yield all([
-      call(WelcomeSaga),
+      call(ProfileSaga),
     ])
   },
 }

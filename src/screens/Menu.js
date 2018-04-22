@@ -1,8 +1,8 @@
 import React from 'react'
 import Menu from 'src/components/Menu'
 
-const WelcomeScreen = () => pug`
+const MenuScreen = () => pug`
   Menu
 `
 
-export default WelcomeScreen
+export default MenuScreen

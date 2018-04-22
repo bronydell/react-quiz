@@ -10,7 +10,7 @@ class Menu extends React.Component {
         RowWrapper
           Button Explore Quizes
         RowWrapper
-          Button Settings
+          Button Profile
     `
   }
 }
