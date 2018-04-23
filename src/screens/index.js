@@ -17,7 +17,7 @@ const RootNavigator = StackNavigator({
 }, {
   headerMode: 'none',
   navigationOptions,
-  initialRouteName: 'Profile',
+  initialRouteName: 'Menu',
 })
 
 export default RootNavigator

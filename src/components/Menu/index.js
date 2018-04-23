@@ -10,8 +10,12 @@ class Menu extends React.Component {
         RowWrapper
           Button Explore Quizes
         RowWrapper
-          Button Profile
+          Button(onPress=this.onProfile) Profile
     `
+  }
+
+  onProfile = () => {
+    this.props.navigation.navigate('Profile')
   }
 }
 

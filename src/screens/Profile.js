@@ -1,7 +1,7 @@
 import React from 'react'
-import { Text } from 'react-native'
 import Register from 'src/containers/Register'
 import Login from 'src/containers/Login'
+import Profile from 'src/containers/Profile'
 import { getUser, setScreen } from 'src/models/Profile/actions'
 import { connect } from 'react-redux'
 
@@ -28,7 +28,7 @@ class ProfileScreen extends React.Component {
     switch (this.props.screen) {
       case 'profile':
         return pug`
-          Text Profile
+          Profile
         `
       case 'login':
         return pug`

@@ -17,6 +17,12 @@ export default (state = initialState, { type, payload }) => {
         user: payload.user,
         error: null,
       }
+    case actions.logOut.SUCCESS_TYPE:
+      return {
+        ...state,
+        user: null,
+        error: null,
+      }
     case actions.setScreen.SUCCESS_TYPE:
       return {
         ...state,

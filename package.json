@@ -11,7 +11,7 @@
     "lint:styles": "stylelint './src/**/*.js'",
     "lint": "yarn lint:js && yarn lint:styles",
     "test": "node node_modules/jest/bin/jest.js",
-    "debugger": "open 'rndebugger://set-debugger-loc?host=localhost&port=19002'"
+    "debugger": "open 'rndebugger://set-debugger-loc?host=localhost&port=19001'"
   },
   "dependencies": {
     "expo": "^25.0.0",

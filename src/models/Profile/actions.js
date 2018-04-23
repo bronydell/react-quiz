@@ -10,12 +10,14 @@ export const logIn = new Action('logIn', {
   failure: error => ({ error }),
 })
 
+export const logOut = new Action('logOut')
+
 export const setScreen = new Action('setScreen', {
   success: screen => ({ screen }),
 })
 
 export const register = new Action('register', {
-  init: (email, password) => ({ email, password }),
+  init: (email, password, name) => ({ email, password, name }),
   success: user => ({ user }),
   failure: error => ({ error }),
 })

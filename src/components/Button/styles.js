@@ -23,5 +23,6 @@ export const Container = styled.TouchableHighlight`
 export const Text = styled.Text`
   font-size: 32;
   color: white;
+  text-align: center;
   font-family: Dimbo;
 `

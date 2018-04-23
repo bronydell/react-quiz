@@ -20,6 +20,9 @@ function* register({ payload }) {
   try {
     const user = yield firebase.auth()
       .createUserWithEmailAndPassword(payload.email, payload.password)
+    user.updateProfile({
+      displayName: payload.name,
+    })
     yield persistence.setLogin(payload.email)
     yield persistence.setPassword(payload.password)
     yield put(actions.register.success(user))
@@ -36,7 +39,20 @@ function* getUser() {
       .signInWithEmailAndPassword(email, password)
     yield put(actions.getUser.success(user))
   } catch (error) {
+    yield persistence.setLogin(null)
+    yield persistence.setPassword(null)
     yield put(actions.getUser.success(null))
+  }
+}
+
+function* logOut() {
+  try {
+    yield firebase.auth().signOut()
+    yield persistence.setLogin(null)
+    yield persistence.setPassword(null)
+    yield put(actions.logOut.success())
+  } catch (error) {
+    yield put(actions.logOut.failure())
   }
 }
 
@@ -46,6 +62,7 @@ export default function* () {
       yield takeEvery(actions.logIn.INIT_TYPE, logIn)
       yield takeEvery(actions.register.INIT_TYPE, register)
       yield takeEvery(actions.getUser.INIT_TYPE, getUser)
+      yield takeEvery(actions.logOut.INIT_TYPE, logOut)
     }),
   ])
 }
