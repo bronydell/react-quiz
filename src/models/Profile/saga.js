@@ -23,6 +23,10 @@ function* register({ payload }) {
     user.updateProfile({
       displayName: payload.name,
     })
+    yield firebase.database().ref(`users/${user.uid}`).set({
+      quizes: 0,
+      points: 0,
+    })
     yield persistence.setLogin(payload.email)
     yield persistence.setPassword(payload.password)
     yield put(actions.register.success(user))
