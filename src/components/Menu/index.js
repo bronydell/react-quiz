@@ -8,10 +8,15 @@ class Menu extends React.Component {
     return pug`
       Container
         RowWrapper
-          Button Explore Quizes
+          Button(onPress=this.onCatalog) Explore Quizes
         RowWrapper
           Button(onPress=this.onProfile) Profile
     `
+  }
+
+  onCatalog = () => {
+    console.log('onCatalog')
+    this.props.navigation.navigate('QuizCatalog')
   }
 
   onProfile = () => {
