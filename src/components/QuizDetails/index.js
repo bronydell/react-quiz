@@ -11,16 +11,28 @@ import {
 } from './styles'
 
 class QuizDetails extends React.Component {
-  render() {
+  constructor(props) {
+    super(props)
     const { params } = this.props.navigation.state
-    const quiz = params ? params.quiz : null
+    this.state = {
+      quiz: params ? params.quiz : null,
+    }
+  }
+
+  componentWillReceiveProps(nextProps) {
+    if (nextProps.quiz) {
+      this.props.navigation.navigate('Quiz')
+    }
+  }
+
+  render() {
     return pug`
       Container
         TitleWrapper
           Title= "Quiz details"
         Content
           DetailsWrapper
-            Text= "Description: "+quiz.description
+            Text= "Description: "+this.state.quiz.description
             Text= "Author: Somebody once told me"
           Button(onPress=this.onStart)= "Start test"
     `
@@ -28,6 +40,7 @@ class QuizDetails extends React.Component {
 
   onStart = () => {
     console.log('Start quiz!')
+    this.props.startQuiz(this.state.quiz.key)
   }
 }
 

@@ -6,11 +6,13 @@ import ProfileReducer from './Profile/reducer'
 import ProfileSaga from './Profile/saga'
 import CatalogReducer from './Catalog/reducer'
 import CatalogSaga from './Catalog/saga'
+import QuizReducer from './Quiz/reducer'
 
 export default {
   reducers: {
     profile: ProfileReducer,
     catalog: CatalogReducer,
+    quiz: QuizReducer,
   },
   sagas: function* sagas() {
     yield all([

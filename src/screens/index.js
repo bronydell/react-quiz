@@ -1,15 +1,16 @@
-import { StackNavigator } from 'react-navigation'
+import { StackNavigator, SwitchNavigator } from 'react-navigation'
 
 import MenuScreen from 'src/screens/Menu'
 import ProfileScreen from 'src/screens/Profile'
 import QuizCatalogScreen from 'src/screens/QuizCatalog'
 import QuizDetailsScreen from 'src/screens/QuizDetails'
+import QuizScreen from 'src/screens/Quiz'
 
 const navigationOptions = {
   headerMode: 'None',
 }
 
-const RootNavigator = StackNavigator({
+const ApplicationStack = StackNavigator({
   Menu: {
     screen: MenuScreen,
   },
@@ -28,4 +29,22 @@ const RootNavigator = StackNavigator({
   initialRouteName: 'Menu',
 })
 
-export default RootNavigator
+const QuizStack = StackNavigator({
+  Game: {
+    screen: QuizScreen,
+  },
+}, {
+  headerMode: 'none',
+  navigationOptions,
+  initialRouteName: 'Game',
+})
+
+export default SwitchNavigator(
+  {
+    Application: ApplicationStack,
+    Quiz: QuizStack,
+  },
+  {
+    initialRouteName: 'Application',
+  },
+)

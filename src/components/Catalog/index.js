@@ -24,7 +24,6 @@ class QuizCatalog extends React.Component {
   }
 
   onDetails = (item) => {
-    this.props.selectQuiz(item)
     this.props.navigation.navigate('QuizDetails', {
       quiz: item,
     })

@@ -2,6 +2,7 @@ import * as actions from './actions'
 
 const initialState = {
   quizes: null,
+  quiz: null,
 }
 
 export default (state = initialState, { type, payload }) => {
@@ -11,6 +12,11 @@ export default (state = initialState, { type, payload }) => {
       return {
         ...state,
         quizes: payload.list,
+      }
+    case actions.setQuiz.SUCCESS_TYPE:
+      return {
+        ...state,
+        quiz: payload.quiz,
       }
 
     default:

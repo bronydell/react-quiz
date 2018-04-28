@@ -1,9 +1,11 @@
 import * as firebase from 'firebase'
 
 export const getQuiz = id => firebase.database()
-  .ref(`quizes/${id}`)
+  .ref()
+  .child('quizes')
+  .child(id.toString())
   .once('value')
-  .then(data => data.val())
+  .then(data => data)
 
 export const getQuizes = (lastItem, count = 15) => {
   const ref = firebase.database()

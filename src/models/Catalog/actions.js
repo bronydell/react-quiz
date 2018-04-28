@@ -14,7 +14,3 @@ export const setQuiz = new Action('setQuiz', {
   init: id => ({ id }),
   success: quiz => ({ quiz }),
 })
-
-export const selectQuiz = new Action('selectQuiz', {
-  success: quiz => ({ quiz }),
-})
