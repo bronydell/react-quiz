@@ -1,6 +1,5 @@
 import React from 'react'
 import Title from 'src/components/Title'
-import Button from 'src/components/Button'
 import Keyboard from 'src/components/Keyboard'
 import Text from 'src/components/PlainText'
 
@@ -51,7 +50,7 @@ class Quiz extends React.Component {
       })
       this.props.setQuestion(this.props.question + 1)
     } else {
-      console.log('That\'s it boy')
+      this.props.navigation.navigate('Result')
     }
   }
 }
