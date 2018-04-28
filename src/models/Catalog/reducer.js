@@ -1,16 +1,16 @@
 import * as actions from './actions'
 
 const initialState = {
-  data: null,
+  quizes: null,
 }
 
 export default (state = initialState, { type, payload }) => {
   console.log('Type: ', type, 'Payload: ', payload)
   switch (type) {
-    case actions.fetchQuizes.success:
+    case actions.fetchQuizes.SUCCESS_TYPE:
       return {
         ...state,
-        data: payload.data,
+        quizes: payload.list,
       }
 
     default:
