@@ -17,6 +17,11 @@ class Quiz extends React.Component {
     this.state = {
       pressedButton: null,
     }
+    this.props.setProgress({
+      question: 0,
+      points: 0,
+      answered: 0,
+    })
   }
   render() {
     const question = this.props.quiz.questions[this.props.question]
@@ -41,6 +46,14 @@ class Quiz extends React.Component {
     this.setState({
       pressedButton: item.id,
     })
+    // eslint-disable-next-line
+    const progress = this.props.progress
+    progress.question += 1
+    if (item.isAnswer) {
+      progress.answered += 1
+      progress.points += this.props.quiz.questions[this.props.question].points
+    }
+    this.props.setProgress(progress)
   }
 
   onNext = () => {

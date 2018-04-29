@@ -26,6 +26,7 @@ function* register({ payload }) {
     yield firebase.database().ref(`users/${user.uid}`).set({
       quizes: 0,
       points: 0,
+      progress: {},
     })
     yield persistence.setLogin(payload.email)
     yield persistence.setPassword(payload.password)
