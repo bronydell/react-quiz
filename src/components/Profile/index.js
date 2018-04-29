@@ -19,8 +19,9 @@ class ProfilePage extends React.Component {
           TitleWrapper
             Title Your profile
           InfoWrapper
-            PlainText= "Hello, "+this.props.user.displayName+"!"
-            PlainText= "You've finished 0 quizes and got 0 points"
+            if this.props.user
+              PlainText= "Hello, "+this.props.user.displayName+"!"
+            PlainText= "You've finished 0 quizzes and got 0 points"
           RowWrapper
             Button(onPress=this.props.logOut)= "Sign out"
     `
