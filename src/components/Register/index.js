@@ -17,6 +17,7 @@ class Register extends React.Component {
     super(props)
     this.state = {
       email: '',
+      name: '',
       password: '',
       passwordRepeat: '',
     }
@@ -37,6 +38,12 @@ class Register extends React.Component {
                   keyboardType='email-address'
                   autoCapitalize='none'
                 ) Email
+            RowWrapper
+              LoginWrapper
+                InputField(
+                  text=this.state.name
+                  onChange=this.onChangeName
+                ) Name
             RowWrapper
               LoginWrapper
                 InputField(
@@ -66,8 +73,14 @@ class Register extends React.Component {
     })
   }
 
+  onChangeName = (text) => {
+    this.setState({
+      name: text,
+    })
+  }
+
   onRegister = () => {
-    this.props.register(this.state.email, this.state.password)
+    this.props.register(this.state.email, this.state.password, this.state.name)
   }
 
   toLogin = () => {

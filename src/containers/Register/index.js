@@ -10,7 +10,7 @@ const mapStateToProps = ({ profile }) => ({
 })
 
 const mapDispatchToProps = {
-  register: (email, password) => register.init(email, password),
+  register: (email, password, name) => register.init(email, password, name),
   setScreen: screenName => setScreen.success(screenName),
 }
 
