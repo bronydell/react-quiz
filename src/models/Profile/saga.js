@@ -9,6 +9,7 @@ function* logIn({ payload }) {
       .signInWithEmailAndPassword(payload.email, payload.password)
     yield persistence.setLogin(payload.email)
     yield persistence.setPassword(payload.password)
+    console.log('UID:', firebase.auth().currentUser.uid)
     yield put(actions.logIn.success(user))
   } catch (error) {
     yield put(actions.logIn.failure(error))
