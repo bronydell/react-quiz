@@ -6,13 +6,12 @@ import { Separator } from './styles'
 
 class SelectionList extends React.Component {
   render() {
-    console.log('Selection list onChangeData', this.props.onChangeData)
     return pug`
       FlatList(
         ...this.props
+        extraData=this.props
         data=this.props.data
         renderItem=this.renderItem
-        extraData=this.props
       )
     `
   }

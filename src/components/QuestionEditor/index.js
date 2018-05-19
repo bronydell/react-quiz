@@ -23,14 +23,18 @@ class QuestionEditor extends React.Component {
         },
       ],
     }
-    if (this.props.question !== -1) {
-      const { quiz } = this.props
+    if (props.question !== -1) {
+      const { quiz, question } = props
       this.state = {
-        questionText: quiz[this.props.question].question,
+        questionText: quiz.questions[question].question,
         selected: [this.getAnswerID()],
         data: this.parseData(),
       }
     }
+  }
+
+  componentWillUnmount() {
+    this.props.setQuestion(null)
   }
 
   render() {
@@ -42,7 +46,7 @@ class QuestionEditor extends React.Component {
           PlainText= "Question text:"
           InputField(
             maxLength=144
-            text=this.state.title
+            text=this.state.questionText
             onChange=this.onChangeTitle
           )= "Question text"
           PlainText= "Question list:"
@@ -68,7 +72,7 @@ class QuestionEditor extends React.Component {
     const { quiz, question } = this.props
     for (let i = 0; i < quiz.questions[question].answers.length; i += 1) {
       if (quiz.questions[question].answers[i].isAnswer) {
-        return quiz.questions[question].answers[i].id
+        return (quiz.questions[question].answers[i].id - 1).toString()
       }
     }
     return null
@@ -79,11 +83,11 @@ class QuestionEditor extends React.Component {
     const { quiz, question } = this.props
     for (let i = 0; i < quiz.questions[question].answers.length; i += 1) {
       result.push({
-        key: quiz.questions[question].answers[i].id,
+        key: (quiz.questions[question].answers[i].id - 1).toString(),
         title: quiz.questions[question].answers[i].text,
       })
     }
-    return null
+    return result
   }
 
   onAddOption = () => {
@@ -102,9 +106,11 @@ class QuestionEditor extends React.Component {
   }
 
   onSelectAnswer = (selected) => {
-    this.setState({
-      selected,
-    })
+    if (Array.isArray(selected)) {
+      this.setState({
+        selected,
+      })
+    }
   }
 
   onChangeData = ({ id, text }) => {
@@ -126,9 +132,9 @@ class QuestionEditor extends React.Component {
           return
         }
         question.answers.push({
-          id: this.state.data[i].id,
+          id: this.state.data[i].key,
           text: this.state.data[i].title,
-          isAnswer: this.state.selected[0] === this.state.data[i].id,
+          isAnswer: this.state.selected[0] === this.state.data[i].key,
         })
       }
       const { quiz } = this.props

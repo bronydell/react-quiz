@@ -5,7 +5,7 @@ import { getQuiz, editQuestion } from 'src/models/QuizEditor/actions'
 import QuizEditor from 'src/components/QuizEditor'
 
 const mapStateToProps = ({ editor }) => ({
-  editedQuestion: editor.question,
+  question: editor.question,
   quiz: editor.quiz,
 })
 

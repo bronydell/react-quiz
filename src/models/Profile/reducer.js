@@ -7,7 +7,6 @@ const initialState = {
 }
 
 export default (state = initialState, { type, payload }) => {
-  console.log('Type: ', type, 'Payload: ', payload)
   switch (type) {
     case actions.register.SUCCESS_TYPE:
     case actions.getUser.SUCCESS_TYPE:

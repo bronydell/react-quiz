@@ -11,7 +11,6 @@ import {
 
 class SelectionListTextItem extends React.Component {
   render() {
-    console.log(this.props.title)
     return pug`
       Container
         IconPlaceholder(onPress=this.onPress)

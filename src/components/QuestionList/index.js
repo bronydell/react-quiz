@@ -15,12 +15,13 @@ class QuizList extends React.Component {
     `
   }
   keyExtractor = (item, index) => index
-  renderItem = ({ item }) => pug`
-      Item(
-        item=item
-        onPress=this.props.onItemPress
-      )
-    `
+  renderItem = ({ item, index }) => pug`
+        Item(
+          item=item
+          id=index
+          onPress=this.props.onItemPress
+        )
+      `
 }
 
 QuizList.propTypes = {

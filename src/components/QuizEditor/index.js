@@ -15,6 +15,12 @@ class QuizEditor extends React.Component {
     }
   }
 
+  componentWillReceiveProps(nextProps) {
+    if (nextProps.question !== null && nextProps.question !== undefined) {
+      this.props.navigation.navigate('QuestionEditor')
+    }
+  }
+
   render() {
     return pug`
       Container
@@ -32,6 +38,7 @@ class QuizEditor extends React.Component {
         PlainText= "Question list:"
         QuestionList(
           data=this.props.quiz.questions
+          onItemPress=this.onQuestion
         )
         EmptySpace
         BottomButtonWrapper
@@ -51,7 +58,10 @@ class QuizEditor extends React.Component {
 
   onNewQuestion = () => {
     this.props.setQuestion(-1)
-    this.props.navigation.navigate('QuestionEditor')
+  }
+
+  onQuestion = (id) => {
+    this.props.setQuestion(id)
   }
 
   onChangeName = (text) => {

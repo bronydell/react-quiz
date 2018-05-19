@@ -12,7 +12,7 @@ class QuizItem extends React.Component {
   }
 
   onPress = () => {
-    this.props.onPress(this.props.item)
+    this.props.onPress(this.props.id, this.props.item)
   }
 }
 

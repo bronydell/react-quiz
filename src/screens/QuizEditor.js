@@ -1,7 +1,7 @@
 import React from 'react'
 import QuizEditor from 'src/containers/QuizEditor'
 
-class QuizResultScreen extends React.Component {
+class QuizEditorScreen extends React.Component {
   render() {
     return pug`
       QuizEditor(...this.props)
@@ -9,4 +9,4 @@ class QuizResultScreen extends React.Component {
   }
 }
 
-export default QuizResultScreen
+export default QuizEditorScreen

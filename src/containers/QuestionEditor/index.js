@@ -1,16 +1,17 @@
 import { connect } from 'react-redux'
 
-import { getQuiz } from 'src/models/QuizEditor/actions'
+import { getQuiz, editQuestion } from 'src/models/QuizEditor/actions'
 
-import MyQuizzes from 'src/components/MyQuizzes'
+import QuestionEditor from 'src/components/QuestionEditor'
 
 const mapStateToProps = ({ editor }) => ({
-  editedQuestion: editor.question,
+  question: editor.question,
   quiz: editor.quiz,
 })
 
 const mapDispatchToProps = {
   setQuiz: quiz => getQuiz.success(quiz),
+  setQuestion: question => editQuestion.success(question),
 }
 
-export default connect(mapStateToProps, mapDispatchToProps)(MyQuizzes)
+export default connect(mapStateToProps, mapDispatchToProps)(QuestionEditor)
