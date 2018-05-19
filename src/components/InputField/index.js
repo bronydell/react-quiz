@@ -11,9 +11,12 @@ class InputField extends React.Component {
       TextInputContainer
         TextInput(
           placeholder=this.props.children
+          maxLength=this.props.maxLength
+          value=this.props.text
           underlineColorAndroid="transparent"
           placeholderTextColor=COLOR_PLACEHOLDER_COLOR
           autoCorrect=this.props.autoCorrect
+          multiline=this.props.multiline
           onChangeText=this.textChange
           autoCapitalize=this.props.autoCapitalize
           keyboardType=this.props.keyboardType
@@ -30,7 +33,9 @@ class InputField extends React.Component {
 InputField.propTypes = {
   autoCorrect: PropTypes.bool,
   isPassword: PropTypes.bool,
+  multiline: PropTypes.bool,
   text: PropTypes.string,
+  maxLength: PropTypes.number,
   autoCapitalize: PropTypes.string,
   keyboardType: PropTypes.string,
   children: PropTypes.string,
@@ -39,6 +44,8 @@ InputField.propTypes = {
 
 InputField.defaultProps = {
   autoCorrect: false,
+  multiline: false,
+  maxLength: 10000,
   autoCapitalize: 'sentences',
   keyboardType: 'default',
   isPassword: false,

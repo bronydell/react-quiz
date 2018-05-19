@@ -6,7 +6,9 @@ import Intro from 'src/screens/Intro'
 import ProfileScreen from 'src/screens/Profile'
 import QuizCatalogScreen from 'src/screens/QuizCatalog'
 import QuizResultScreen from 'src/screens/QuizResult'
+import QuizEditorScreen from 'src/screens/QuizEditor'
 import QuizDetailsScreen from 'src/screens/QuizDetails'
+import QuestionEditorScreen from 'src/screens/QuestionEditor'
 import QuizScreen from 'src/screens/Quiz'
 
 const navigationOptions = {
@@ -22,6 +24,12 @@ const ApplicationStack = StackNavigator({
   },
   QuizDetails: {
     screen: QuizDetailsScreen,
+  },
+  QuizEditor: {
+    screen: QuizEditorScreen,
+  },
+  QuestionEditor: {
+    screen: QuestionEditorScreen,
   },
   MyQuizzes: {
     screen: MyQuizzesScreen,
