@@ -14,10 +14,12 @@ function* getMyQuizzes() {
 
 function* getQuiz({ payload }) {
   try {
+    console.log('Pyaload', payload)
     const quiz = yield fetchQuiz(payload.id)
     console.log('Fetched Quiz: ', quiz)
     yield put(actions.getQuiz.success(quiz))
   } catch (error) {
+    console.log('Fetch Quiz error: ', error)
     yield put(actions.getQuiz.failure(error))
   }
 }

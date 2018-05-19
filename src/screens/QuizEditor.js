@@ -1,5 +1,5 @@
 import React from 'react'
-import QuizEditor from 'src/components/QuizEditor'
+import QuizEditor from 'src/containers/QuizEditor'
 
 class QuizResultScreen extends React.Component {
   render() {

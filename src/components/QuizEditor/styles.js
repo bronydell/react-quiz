@@ -1,7 +1,7 @@
 import styled from 'styled-components'
 import { Constants } from 'expo'
 
-export const Container = styled.View`
+export const Container = styled.ScrollView`
   padding-top: ${Constants.statusBarHeight};
   flex-grow: 1;
 `

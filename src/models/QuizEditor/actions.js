@@ -13,3 +13,7 @@ export const getQuiz = new Action('getQuiz', {
   init: id => ({ id }),
   success: quiz => ({ quiz }),
 })
+
+export const editQuestion = new Action('editQuestion', {
+  success: question => ({ question }),
+})

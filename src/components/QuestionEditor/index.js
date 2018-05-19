@@ -23,6 +23,14 @@ class QuestionEditor extends React.Component {
         },
       ],
     }
+    if (this.props.question !== -1) {
+      const { quiz } = this.props
+      this.state = {
+        questionText: quiz[this.props.question].question,
+        selected: [this.getAnswerID()],
+        data: this.parseData(),
+      }
+    }
   }
 
   render() {
@@ -54,6 +62,28 @@ class QuestionEditor extends React.Component {
               onPress=this.onDone
             )= "Finish"
     `
+  }
+
+  getAnswerID = () => {
+    const { quiz, question } = this.props
+    for (let i = 0; i < quiz.questions[question].answers.length; i += 1) {
+      if (quiz.questions[question].answers[i].isAnswer) {
+        return quiz.questions[question].answers[i].id
+      }
+    }
+    return null
+  }
+
+  parseData = () => {
+    const result = []
+    const { quiz, question } = this.props
+    for (let i = 0; i < quiz.questions[question].answers.length; i += 1) {
+      result.push({
+        key: quiz.questions[question].answers[i].id,
+        title: quiz.questions[question].answers[i].text,
+      })
+    }
+    return null
   }
 
   onAddOption = () => {
@@ -92,13 +122,24 @@ class QuestionEditor extends React.Component {
       question.points = 1
       question.answers = []
       for (let i = 0; i < this.state.data.length; i += 1) {
+        if (!this.state.data[i].title) {
+          return
+        }
         question.answers.push({
           id: this.state.data[i].id,
           text: this.state.data[i].title,
           isAnswer: this.state.selected[0] === this.state.data[i].id,
         })
       }
-      console.log('Result: ', question)
+      const { quiz } = this.props
+      if (this.props.question === -1) {
+        quiz.questions.push(question)
+        this.props.setQuiz(quiz)
+      } else {
+        quiz.questions[this.props.question] = question
+        this.props.setQuiz(quiz)
+      }
+      this.props.navigation.goBack()
     }
   }
 

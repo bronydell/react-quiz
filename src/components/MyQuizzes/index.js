@@ -9,22 +9,37 @@ class MyQuizzes extends React.Component {
     this.props.fetchQuizzes()
   }
 
+  componentWillReceiveProps(nextProps) {
+    if (nextProps.quiz) {
+      console.log(nextProps.quiz)
+      this.props.navigation.navigate('QuizEditor')
+    }
+  }
+
   render() {
     return pug`
       Container
         Title= "My quizzes"
         QuizList(
           data=this.props.myQuizzes
+          onItemPress=this.onQuizEditor
         )
         EmptySpace
         BottomButtonWrapper
           Button(
-            onPress=this.onQuizEditor
+            onPress=this.onNewQuizEditor
           )= "Create new test"
     `
   }
-  onQuizEditor = () => {
-    this.props.navigation.navigate('QuizEditor')
+
+  onQuizEditor = (quizDetails) => {
+    this.props.fetchQuiz(quizDetails.key)
+  }
+
+  onNewQuizEditor = () => {
+    this.props.setQuiz({
+      questions: [],
+    })
   }
 }
 

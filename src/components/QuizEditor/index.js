@@ -3,14 +3,15 @@ import Title from 'src/components/Title'
 import Button from 'src/components/Button'
 import InputField from 'src/components/InputField'
 import PlainText from 'src/components/PlainText'
-import QuizList from 'src/components/QuizList'
+import QuestionList from 'src/components/QuestionList'
 import { Container, BottomButtonWrapper, EmptySpace } from './styles'
 
-class MyQuizzes extends React.Component {
+class QuizEditor extends React.Component {
   constructor(props) {
     super(props)
     this.state = {
-      title: '',
+      title: this.props.quiz.title,
+      description: this.props.quiz.description,
     }
   }
 
@@ -23,9 +24,14 @@ class MyQuizzes extends React.Component {
           text=this.state.title
           onChange=this.onChangeTitle
         )= "Quiz title"
+        PlainText= "Quiz description:"
+        InputField(
+          text=this.state.title
+          onChange=this.onChangeDescription
+        )= "Quiz title"
         PlainText= "Question list:"
-        QuizList(
-          data=this.props.myQuizzes
+        QuestionList(
+          data=this.props.quiz.questions
         )
         EmptySpace
         BottomButtonWrapper
@@ -44,6 +50,7 @@ class MyQuizzes extends React.Component {
   }
 
   onNewQuestion = () => {
+    this.props.setQuestion(-1)
     this.props.navigation.navigate('QuestionEditor')
   }
 
@@ -52,6 +59,12 @@ class MyQuizzes extends React.Component {
       displayName: text,
     })
   }
+
+  onChangeDescription = (text) => {
+    this.setState({
+      description: text,
+    })
+  }
 }
 
-export default MyQuizzes
+export default QuizEditor
