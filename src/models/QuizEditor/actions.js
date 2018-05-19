@@ -17,3 +17,8 @@ export const getQuiz = new Action('getQuiz', {
 export const editQuestion = new Action('editQuestion', {
   success: question => ({ question }),
 })
+
+export const putQuiz = new Action('putQuiz', {
+  init: (id, quiz) => ({ id, quiz }),
+  failure: error => ({ error }),
+})

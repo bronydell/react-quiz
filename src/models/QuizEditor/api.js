@@ -3,7 +3,11 @@ import * as firebase from 'firebase'
 export const fetchQuiz = id => firebase.database()
   .ref(`quizzes/${id}`)
   .once('value')
-  .then(data => data.val())
+  .then((data) => {
+    const quiz = data.val()
+    quiz.key = data.key
+    return quiz
+  })
 
 export const fetchMyQuizzes = () => firebase.database()
   .ref()
@@ -21,3 +25,7 @@ export const fetchMyQuizzes = () => firebase.database()
     })
     return searchResults
   })
+
+export const putQuiz = (id, quiz) => firebase.database()
+  .ref(`quizzes/${id}`)
+  .set(quiz)

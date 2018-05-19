@@ -1,4 +1,5 @@
 import React from 'react'
+import { NavigationActions } from 'react-navigation'
 import Title from 'src/components/Title'
 import Button from 'src/components/Button'
 import InputField from 'src/components/InputField'
@@ -16,12 +17,25 @@ class QuizEditor extends React.Component {
   }
 
   componentWillReceiveProps(nextProps) {
-    if (nextProps.question !== null && nextProps.question !== undefined) {
-      this.props.navigation.navigate('QuestionEditor')
+    console.log('Nextprops! Yay!', nextProps)
+    if (nextProps.quiz) {
+      if (nextProps.question !== null && nextProps.question !== undefined) {
+        this.props.navigation.navigate('QuestionEditor')
+      }
+    } else {
+      this.props.navigation.dispatch(NavigationActions.reset({
+        index: 0,
+        actions: [
+          NavigationActions.navigate({ routeName: 'Menu' }),
+        ],
+      }))
     }
   }
 
   render() {
+    if (!this.props.quiz) {
+      return null
+    }
     return pug`
       Container
         Title= "Quiz editor"
@@ -32,7 +46,7 @@ class QuizEditor extends React.Component {
         )= "Quiz title"
         PlainText= "Quiz description:"
         InputField(
-          text=this.state.title
+          text=this.state.description
           onChange=this.onChangeDescription
         )= "Quiz title"
         PlainText= "Question list:"
@@ -46,7 +60,10 @@ class QuizEditor extends React.Component {
             onPress=this.onNewQuestion
           )= "Create new Question"
         BottomButtonWrapper
-          Button= "Publish"
+          Button(
+            onPress=this.onPublish
+            disabled=!this.canPublish()
+          )= "Publish"
     `
   }
 
@@ -60,6 +77,21 @@ class QuizEditor extends React.Component {
     this.props.setQuestion(-1)
   }
 
+  onPublish = () => {
+    if (this.canPublish()) {
+      const { quiz } = this.props
+      const { key } = quiz
+      delete quiz.key
+      quiz.title = this.state.title
+      quiz.description = this.state.description
+      quiz.author = this.props.user.uid
+      quiz.displayName = this.props.user.displayName
+      console.log('Quiz:', quiz, 'Id: ', key)
+      this.props.sendQuiz(key, quiz)
+    }
+  }
+
+  canPublish = () => this.state.title && this.props.quiz.questions.length >= 1
   onQuestion = (id) => {
     this.props.setQuestion(id)
   }
