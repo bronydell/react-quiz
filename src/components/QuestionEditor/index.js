@@ -31,6 +31,7 @@ class QuestionEditor extends React.Component {
         data: this.parseData(),
       }
     }
+    console.log('Editor state:', this.state)
   }
 
   componentWillUnmount() {
@@ -38,7 +39,6 @@ class QuestionEditor extends React.Component {
   }
 
   render() {
-    const disableAddButton = this.state.data.length >= 4
     return pug`
       Container(behavior="padding" enabled)
         Title= "Question editor"
@@ -58,12 +58,13 @@ class QuestionEditor extends React.Component {
           )
           BottomButtonWrapper
             Button(
-              disabled=disableAddButton
+              disabled=!this.canAddOption()
               onPress=this.onAddOption
             )= "Add option"
           BottomButtonWrapper
             Button(
               onPress=this.onDone
+              disabled=!this.canFinish()
             )= "Finish"
     `
   }
@@ -72,7 +73,7 @@ class QuestionEditor extends React.Component {
     const { quiz, question } = this.props
     for (let i = 0; i < quiz.questions[question].answers.length; i += 1) {
       if (quiz.questions[question].answers[i].isAnswer) {
-        return (quiz.questions[question].answers[i].id - 1).toString()
+        return (quiz.questions[question].answers[i].id).toString()
       }
     }
     return null
@@ -83,7 +84,7 @@ class QuestionEditor extends React.Component {
     const { quiz, question } = this.props
     for (let i = 0; i < quiz.questions[question].answers.length; i += 1) {
       result.push({
-        key: (quiz.questions[question].answers[i].id - 1).toString(),
+        key: (quiz.questions[question].answers[i].id).toString(),
         title: quiz.questions[question].answers[i].text,
       })
     }
@@ -113,16 +114,34 @@ class QuestionEditor extends React.Component {
     }
   }
 
-  onChangeData = ({ id, text }) => {
+  onChangeData = ({ action, id, text }) => {
     const newData = this.state.data
-    newData[parseInt(id, 10)].title = text
+    const newSelected = this.state.selected
+    if (action === 'TITLE_EDIT') {
+      newData[parseInt(id, 10)].title = text
+    } else if (action === 'DELETE_ROW') {
+      let index = 0
+      for (let i = 0; i < newData.length; i += 1) {
+        const { key } = newData[i]
+        if (key === id) {
+          newData.splice(i, 1)
+          if (key === newSelected[0]) {
+            newSelected[0] = newData[0].key
+          }
+        } else {
+          newData[i].key = index.toString()
+          index += 1
+        }
+      }
+    }
     this.setState({
       data: newData,
+      selected: newSelected,
     })
   }
 
   onDone = () => {
-    if (this.state.questionText) {
+    if (this.canFinish()) {
       const question = {}
       question.question = this.state.questionText
       question.points = 1
@@ -132,7 +151,7 @@ class QuestionEditor extends React.Component {
           return
         }
         question.answers.push({
-          id: this.state.data[i].key,
+          id: parseInt(this.state.data[i].key, 10),
           text: this.state.data[i].title,
           isAnswer: this.state.selected[0] === this.state.data[i].key,
         })
@@ -149,9 +168,12 @@ class QuestionEditor extends React.Component {
     }
   }
 
+  canFinish = () => this.state.questionText && this.state.data.length >= 2
+  canAddOption = () => this.state.data.length < 4
+
   onChangeTitle = (text) => {
     this.setState({
-      title: text,
+      questionText: text,
     })
   }
 }

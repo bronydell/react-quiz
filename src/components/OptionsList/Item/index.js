@@ -3,10 +3,12 @@ import PropTypes from 'prop-types'
 import PlainText from 'src/components/PlainText'
 import InputField from 'src/components/InputField'
 
-import { COLOR_GREEN_TEXT } from 'src/lib/cssvars'
+import { COLOR_GREEN_TEXT, COLOR_RED_TEXT } from 'src/lib/cssvars'
 import {
   Container,
   IconPlaceholder,
+  DeleteButtonWrapper,
+  InputFieldWrapper,
 } from './styles'
 
 class SelectionListTextItem extends React.Component {
@@ -16,15 +18,25 @@ class SelectionListTextItem extends React.Component {
         IconPlaceholder(onPress=this.onPress)
           if this.props.selected
             PlainText(color=COLOR_GREEN_TEXT)= "A"
-        InputField(
-          text=this.props.title
-          onChange=this.onChangeTitle
-        )= "Option text"
+        InputFieldWrapper
+          InputField(
+            text=this.props.title
+            onChange=this.onChangeTitle
+          )= "Option text"
+        DeleteButtonWrapper(onPress=this.onDelete)
+          PlainText(color=COLOR_RED_TEXT)= "X"
     `
   }
 
   onPress = () => this.props.onPress(this.props.id)
   onChangeTitle = text => this.props.onChangeData({
+    action: 'TITLE_EDIT',
+    id: this.props.id,
+    text,
+  })
+
+  onDelete = text => this.props.onChangeData({
+    action: 'DELETE_ROW',
     id: this.props.id,
     text,
   })

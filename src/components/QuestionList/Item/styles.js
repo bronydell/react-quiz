@@ -1,12 +1,7 @@
 import styled from 'styled-components'
 
-export const Container = styled.TouchableOpacity`
-  flex: 1;
-`
-
-export const Title = styled.Text`
-  font-size: 32;
-  color: black;
-  text-align: left;
-  font-family: Dimbo;
+export const Container = styled.View`
+  flex-direction: row;
+  align-items: center;
+  justify-content: space-between;
 `

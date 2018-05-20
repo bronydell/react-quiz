@@ -17,7 +17,6 @@ class QuizEditor extends React.Component {
   }
 
   componentWillReceiveProps(nextProps) {
-    console.log('Nextprops! Yay!', nextProps)
     if (nextProps.quiz) {
       if (nextProps.question !== null && nextProps.question !== undefined) {
         this.props.navigation.navigate('QuestionEditor')
@@ -33,7 +32,7 @@ class QuizEditor extends React.Component {
   }
 
   render() {
-    if (!this.props.quiz) {
+    if (this.props.quiz == null) {
       return null
     }
     return pug`
@@ -53,6 +52,7 @@ class QuizEditor extends React.Component {
         QuestionList(
           data=this.props.quiz.questions
           onItemPress=this.onQuestion
+          onItemDelete=this.onDeleteQuestion
         )
         EmptySpace
         BottomButtonWrapper
@@ -77,6 +77,13 @@ class QuizEditor extends React.Component {
     this.props.setQuestion(-1)
   }
 
+  onDeleteQuestion = (id) => {
+    const { quiz } = this.props
+    quiz.questions.splice(id, 1)
+    this.props.setQuiz(quiz)
+    this.forceUpdate()
+  }
+
   onPublish = () => {
     if (this.canPublish()) {
       const { quiz } = this.props
@@ -86,7 +93,6 @@ class QuizEditor extends React.Component {
       quiz.description = this.state.description
       quiz.author = this.props.user.uid
       quiz.displayName = this.props.user.displayName
-      console.log('Quiz:', quiz, 'Id: ', key)
       this.props.sendQuiz(key, quiz)
     }
   }

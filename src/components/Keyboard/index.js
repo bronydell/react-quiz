@@ -19,7 +19,8 @@ class Keyboard extends React.Component {
   keyExtractor = item => item.id
   renderItem = ({ item }) => {
     let shouldBeShown = false
-    if (this.props.pressedButton && (this.props.pressedButton === item.id || item.isAnswer)) {
+    if (this.props.pressedButton != null &&
+        (this.props.pressedButton === item.id || item.isAnswer)) {
       shouldBeShown = true
     }
     return pug`

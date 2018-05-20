@@ -9,6 +9,7 @@ class QuizList extends React.Component {
     return pug`
       FlatList(
         data=this.props.data
+        extraData=this.props
         renderItem=this.renderItem
         keyExtractor=this.keyExtractor
       )
@@ -20,17 +21,20 @@ class QuizList extends React.Component {
           item=item
           id=index
           onPress=this.props.onItemPress
+          onDelete=this.props.onItemDelete
         )
       `
 }
 
 QuizList.propTypes = {
   onItemPress: PropTypes.func,
+  onItemDelete: PropTypes.func,
   data: PropTypes.arrayOf(PropTypes.object),
 }
 
 QuizList.defaultProps = {
   onItemPress: () => {},
+  onItemDelete: () => {},
   data: [],
 }
 

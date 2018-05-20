@@ -5,7 +5,6 @@ export const TextInputContainer = styled.View`
   padding-right: 20;
   padding-bottom: 7;
   padding-left: 20;
-  border-radius: 18;
   flex-direction: row;
   justify-content: flex-start;
   align-items: center;
