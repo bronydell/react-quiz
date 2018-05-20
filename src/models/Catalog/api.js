@@ -1,14 +1,14 @@
 import * as firebase from 'firebase'
 
 export const getQuiz = id => firebase.database()
-  .ref(`quizes/${id}`)
+  .ref(`quizzes/${id}`)
   .once('value')
   .then(data => data.val())
 
-export const getQuizes = (lastItem, count = 15) => {
+export const getQuizes = () => {
   const ref = firebase.database()
     .ref()
-    .child('quizes')
+    .child('quizzes')
   // let request = ref.limitToFirst(count)
   // if (lastItem !== null) {
   //   request = ref.orderByKey().startAt(lastItem)

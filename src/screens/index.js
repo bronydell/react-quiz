@@ -1,10 +1,14 @@
 import { StackNavigator, SwitchNavigator } from 'react-navigation'
 
 import MenuScreen from 'src/screens/Menu'
+import MyQuizzesScreen from 'src/screens/MyQuizzes'
+import Intro from 'src/screens/Intro'
 import ProfileScreen from 'src/screens/Profile'
 import QuizCatalogScreen from 'src/screens/QuizCatalog'
 import QuizResultScreen from 'src/screens/QuizResult'
+import QuizEditorScreen from 'src/screens/QuizEditor'
 import QuizDetailsScreen from 'src/screens/QuizDetails'
+import QuestionEditorScreen from 'src/screens/QuestionEditor'
 import QuizScreen from 'src/screens/Quiz'
 
 const navigationOptions = {
@@ -20,6 +24,15 @@ const ApplicationStack = StackNavigator({
   },
   QuizDetails: {
     screen: QuizDetailsScreen,
+  },
+  QuizEditor: {
+    screen: QuizEditorScreen,
+  },
+  QuestionEditor: {
+    screen: QuestionEditorScreen,
+  },
+  MyQuizzes: {
+    screen: MyQuizzesScreen,
   },
   Profile: {
     screen: ProfileScreen,
@@ -40,6 +53,16 @@ const QuizStack = StackNavigator({
   initialRouteName: 'Game',
 })
 
+const IntroStack = StackNavigator({
+  Intro: {
+    screen: Intro,
+  },
+}, {
+  headerMode: 'none',
+  navigationOptions,
+  initialRouteName: 'Intro',
+})
+
 const ResultStack = StackNavigator({
   QuizResult: {
     screen: QuizResultScreen,
@@ -52,11 +75,12 @@ const ResultStack = StackNavigator({
 
 export default SwitchNavigator(
   {
+    Intro: IntroStack,
     Application: ApplicationStack,
     Quiz: QuizStack,
     Result: ResultStack,
   },
   {
-    initialRouteName: 'Application',
+    initialRouteName: 'Intro',
   },
 )

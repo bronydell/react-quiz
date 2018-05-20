@@ -25,7 +25,7 @@ class Quiz extends React.Component {
   }
   render() {
     const question = this.props.quiz.questions[this.props.question]
-    const onItemPress = this.state.pressedButton ? this.onNext : this.onAnswer
+    const onItemPress = this.state.pressedButton != null ? this.onNext : this.onAnswer
     return pug`
       Container
         TitleWrapper
@@ -46,8 +46,7 @@ class Quiz extends React.Component {
     this.setState({
       pressedButton: item.id,
     })
-    // eslint-disable-next-line
-    const progress = this.props.progress
+    const { progress } = this.props
     progress.question += 1
     if (item.isAnswer) {
       progress.answered += 1

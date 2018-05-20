@@ -24,6 +24,7 @@ class QuizItem extends React.Component {
             onPress=this.onPress
             primaryColor=buttonColor
             shadowColor=buttonShadowColor
+            debounced=false
           )= this.props.item.text
         else
           Button(

@@ -42,6 +42,7 @@ function* getUser() {
     const password = yield persistence.getPassword()
     const user = yield firebase.auth()
       .signInWithEmailAndPassword(email, password)
+    console.log('Loged in as', user)
     yield put(actions.getUser.success(user))
   } catch (error) {
     yield persistence.setLogin(null)

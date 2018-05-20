@@ -7,15 +7,11 @@ import { connect } from 'react-redux'
 
 class ProfileScreen extends React.Component {
   componentDidMount() {
-    this.props.getUser()
+    this.setScreen(this.props)
   }
 
   componentWillReceiveProps(nextProps) {
-    console.log('nextprops:', nextProps)
-    if (nextProps.user !== this.props.user) {
-      const screenName = nextProps.user === null ? 'login' : 'profile'
-      this.props.setScreen(screenName)
-    }
+    this.setScreen(nextProps)
   }
 
   render() {
@@ -41,6 +37,11 @@ class ProfileScreen extends React.Component {
       default:
         return null
     }
+  }
+
+  setScreen = (nextProps) => {
+    const screenName = nextProps.user === null ? 'login' : 'profile'
+    this.props.setScreen(screenName)
   }
 }
 
