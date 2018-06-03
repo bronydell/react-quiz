@@ -42,7 +42,6 @@ class Application extends React.PureComponent {
   }
 
   render() {
-    console.log('Store:', store)
     return pug`
       Provider(store=store)
         ViewGrow

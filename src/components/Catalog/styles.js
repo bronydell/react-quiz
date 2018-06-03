@@ -10,6 +10,12 @@ export const Content = styled.View`
   padding-right: 8;
 `
 
+export const ProgressBarWrapper = styled.View`
+  flex-grow: 1;
+  justify-content: center;
+  align-items: center;
+`
+
 export const TitleWrapper = styled.View`
   padding-top: 8;
   justify-content: center;

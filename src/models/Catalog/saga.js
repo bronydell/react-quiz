@@ -5,11 +5,13 @@ import * as actions from './actions'
 
 function* fetchQuizes({ payload }) {
   try {
-    const quizes = yield getQuizes(payload.lastItem)
+    yield put(actions.setLoading.success(true))
+    const quizes = yield getQuizes(payload.filterText)
     yield put(actions.fetchQuizes.success(quizes))
   } catch (error) {
     yield put(setError.success(error.toString()))
   }
+  yield put(actions.setLoading.success(false))
 }
 
 function* setQuiz({ payload }) {

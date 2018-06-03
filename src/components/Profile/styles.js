@@ -26,6 +26,9 @@ export const TitleWrapper = styled.View`
 
 export const RowWrapper = styled.View`
   padding-top: 8;
-  padding-bottom: 16;
   width: 100%;
+`
+
+export const ButtonsWrapper = styled.View`
+  padding-bottom: 16;
 `

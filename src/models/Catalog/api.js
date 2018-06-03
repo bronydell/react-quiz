@@ -5,15 +5,15 @@ export const getQuiz = id => firebase.database()
   .once('value')
   .then(data => data.val())
 
-export const getQuizes = () => {
-  const ref = firebase.database()
+export const getQuizes = (filterText) => {
+  let ref = firebase.database()
     .ref()
     .child('quizzes')
-  // let request = ref.limitToFirst(count)
-  // if (lastItem !== null) {
-  //   request = ref.orderByKey().startAt(lastItem)
-  //     .limitToFirst(count)
-  // }
+  if (filterText) {
+    ref = ref
+      .orderByChild('title')
+      .startAt(filterText)
+  }
   return ref.once('value').then((data) => {
     const searchResults = []
     data.forEach((child) => {

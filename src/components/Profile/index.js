@@ -9,6 +9,7 @@ import {
   InfoWrapper,
   RowWrapper,
   EmptySpace,
+  ButtonsWrapper,
 } from './styles'
 
 class ProfilePage extends React.Component {
@@ -21,10 +22,18 @@ class ProfilePage extends React.Component {
             if this.props.user
               PlainText= "Hello, "+this.props.user.displayName+"!"
           EmptySpace
-          RowWrapper
-            Button(onPress=this.props.logOut)= "Sign out"
+          ButtonsWrapper
+            RowWrapper
+              Button(
+                onPress=this.props.confirmEmail
+                disabled=this.confirmedEmail()
+              )= "Confirm Email"
+            RowWrapper
+              Button(onPress=this.props.logOut)= "Sign out"
     `
   }
+
+  confirmedEmail = () => this.props.user.emailVerified
 }
 
 export default ProfilePage

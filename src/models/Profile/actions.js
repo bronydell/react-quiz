@@ -11,6 +11,7 @@ export const logIn = new Action('logIn', {
 })
 
 export const logOut = new Action('logOut')
+export const confirmEmail = new Action('confirmEmail')
 
 export const setScreen = new Action('setScreen', {
   success: screen => ({ screen }),

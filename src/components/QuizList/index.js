@@ -10,6 +10,8 @@ class QuizList extends React.Component {
       FlatList(
         data=this.props.data
         renderItem=this.renderItem
+        onRefresh=this.props.onRefresh
+        refreshing=this.props.refreshing
       )
     `
   }
@@ -23,11 +25,15 @@ class QuizList extends React.Component {
 
 QuizList.propTypes = {
   onItemPress: PropTypes.func,
+  onRefresh: PropTypes.func,
+  refreshing: PropTypes.bool,
   data: PropTypes.arrayOf(PropTypes.object),
 }
 
 QuizList.defaultProps = {
   onItemPress: () => {},
+  onRefresh: () => {},
+  refreshing: false,
   data: [],
 }
 

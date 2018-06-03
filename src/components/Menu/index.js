@@ -25,6 +25,10 @@ class Menu extends React.Component {
       this.props.setError('To use editor, please, sign in')
       return
     }
+    if (!this.props.user.emailVerified) {
+      this.props.setError('To use editor, please confirm your email')
+      return
+    }
     this.props.navigation.navigate('MyQuizzes')
   }
 
