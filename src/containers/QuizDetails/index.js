@@ -1,9 +1,9 @@
 import { connect } from 'react-redux'
-import { setQuiz } from 'src/models/Catalog/actions'
+import { setQuiz } from 'src/models/Quiz/actions'
 import QuizDetails from 'src/components/QuizDetails'
 
-const mapStateToProps = ({ catalog }) => ({
-  quiz: catalog.quiz,
+const mapStateToProps = ({ quiz }) => ({
+  quiz: quiz.quiz,
 })
 
 const mapDispatchToProps = {

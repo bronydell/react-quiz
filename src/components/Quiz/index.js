@@ -17,11 +17,14 @@ class Quiz extends React.Component {
     this.state = {
       pressedButton: null,
     }
-    this.props.setProgress({
-      question: 0,
-      points: 0,
-      answered: 0,
-    })
+    if (this.props.question === 0) {
+      this.props.setProgress({
+        quizId: this.props.quiz.id,
+        question: 0,
+        points: 0,
+        answered: 0,
+      })
+    }
   }
   render() {
     const question = this.props.quiz.questions[this.props.question]
@@ -52,7 +55,9 @@ class Quiz extends React.Component {
       progress.answered += 1
       progress.points += this.props.quiz.questions[this.props.question].points
     }
+    console.log('onAnswer', progress)
     this.props.setProgress(progress)
+    this.props.syncProgress()
   }
 
   onNext = () => {

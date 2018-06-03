@@ -14,11 +14,6 @@ export default (state = initialState, { type, payload }) => {
         ...state,
         quizes: payload.list,
       }
-    case actions.setQuiz.SUCCESS_TYPE:
-      return {
-        ...state,
-        quiz: payload.quiz,
-      }
     case actions.setLoading.SUCCESS_TYPE:
       return {
         ...state,

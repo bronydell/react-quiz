@@ -1,10 +1,5 @@
 import * as firebase from 'firebase'
 
-export const getQuiz = id => firebase.database()
-  .ref(`quizzes/${id}`)
-  .once('value')
-  .then(data => data.val())
-
 export const getQuizes = (filterText) => {
   let ref = firebase.database()
     .ref()

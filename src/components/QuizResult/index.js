@@ -12,6 +12,10 @@ import {
 } from './styles'
 
 class QuizResult extends React.Component {
+  componentDidMount() {
+    this.props.resetProgress()
+  }
+
   render() {
     return pug`
       Container(behavior="padding")

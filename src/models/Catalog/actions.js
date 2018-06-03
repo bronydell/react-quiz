@@ -10,11 +10,6 @@ export const fetchQuizes = new Action('fetchQuizes', {
   failure: error => ({ error }),
 })
 
-export const setQuiz = new Action('setQuiz', {
-  init: id => ({ id }),
-  success: quiz => ({ quiz }),
-})
-
 export const setLoading = new Action('setLoading', {
   success: loading => ({ loading }),
 })
