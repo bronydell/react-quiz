@@ -1,5 +1,5 @@
 import React from 'react'
-import Menu from 'src/components/Menu'
+import Menu from 'src/containers/Menu'
 
 class MenuScreen extends React.Component {
   render() {

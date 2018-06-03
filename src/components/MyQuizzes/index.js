@@ -1,8 +1,13 @@
 import React from 'react'
-import Title from 'src/components/Title'
+import Header from 'src/components/Header'
 import Button from 'src/components/Button'
 import QuizList from 'src/components/QuizList'
-import { Container, BottomButtonWrapper, EmptySpace } from './styles'
+import {
+  Container,
+  BottomButtonWrapper,
+  EmptySpace,
+  Content,
+} from './styles'
 
 class MyQuizzes extends React.Component {
   componentDidMount() {
@@ -11,7 +16,6 @@ class MyQuizzes extends React.Component {
 
   componentWillReceiveProps(nextProps) {
     if (nextProps.quiz) {
-      console.log(nextProps.quiz)
       this.props.navigation.navigate('QuizEditor')
     }
   }
@@ -19,16 +23,17 @@ class MyQuizzes extends React.Component {
   render() {
     return pug`
       Container
-        Title= "My quizzes"
-        QuizList(
-          data=this.props.myQuizzes
-          onItemPress=this.onQuizEditor
-        )
-        EmptySpace
-        BottomButtonWrapper
-          Button(
-            onPress=this.onNewQuizEditor
-          )= "Create new test"
+        Header= "My quizzes"
+        Content
+          QuizList(
+            data=this.props.myQuizzes
+            onItemPress=this.onQuizEditor
+          )
+          EmptySpace
+          BottomButtonWrapper
+            Button(
+              onPress=this.onNewQuizEditor
+            )= "Create new test"
     `
   }
 

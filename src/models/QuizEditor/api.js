@@ -26,6 +26,12 @@ export const fetchMyQuizzes = () => firebase.database()
     return searchResults
   })
 
-export const putQuiz = (id, quiz) => firebase.database()
-  .ref(`quizzes/${id}`)
-  .set(quiz)
+export const putQuiz = (id, quiz) => {
+  let newId = id
+  if (id == null) {
+    newId = firebase.database().ref().child('quiz').push().key
+  }
+  firebase.database()
+    .ref(`quizzes/${newId}`)
+    .set(quiz)
+}

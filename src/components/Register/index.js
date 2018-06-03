@@ -1,13 +1,12 @@
 import React from 'react'
 import Button from 'src/components/Button'
-import Title from 'src/components/Title'
+import Header from 'src/components/Header'
 import InputField from 'src/components/InputField'
 
 import {
   Container,
   RowWrapper,
   LoginWrapper,
-  TitleWrapper,
   FormWrapper,
   Content,
 } from './styles'
@@ -26,9 +25,8 @@ class Register extends React.Component {
   render() {
     return pug`
       Container(behavior="padding")
+        Header Register
         Content
-          TitleWrapper
-            Title Register
           FormWrapper
             RowWrapper
               LoginWrapper

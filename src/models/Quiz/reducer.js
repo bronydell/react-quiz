@@ -17,6 +17,11 @@ export default (state = initialState, { type, payload }) => {
         ...state,
         progress: payload.progress,
       }
+    case actions.setQuiz.SUCCESS_TYPE:
+      return {
+        ...state,
+        quiz: payload.quiz,
+      }
     case actions.resetStorage.SUCCESS_TYPE:
       return initialState
     default:

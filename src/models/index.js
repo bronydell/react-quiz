@@ -9,11 +9,14 @@ import CatalogSaga from './Catalog/saga'
 import QuizEditorReducer from './QuizEditor/reducer'
 import QuizEditorSaga from './QuizEditor/saga'
 import QuizReducer from './Quiz/reducer'
+import QuizSaga from './Quiz/saga'
+import GlobalReducer from './Global/reducer'
 
 export default {
   reducers: {
     profile: ProfileReducer,
     catalog: CatalogReducer,
+    global: GlobalReducer,
     quiz: QuizReducer,
     editor: QuizEditorReducer,
   },
@@ -22,6 +25,7 @@ export default {
       call(ProfileSaga),
       call(CatalogSaga),
       call(QuizEditorSaga),
+      call(QuizSaga),
     ])
   },
 }

@@ -1,4 +1,6 @@
 import { all, call, put, takeEvery } from 'redux-saga/effects'
+import { setError } from 'src/models/Global/actions'
+
 import { fetchMyQuizzes, fetchQuiz, putQuiz } from './api'
 import * as actions from './actions'
 
@@ -6,9 +8,8 @@ function* getMyQuizzes() {
   try {
     const quizes = yield fetchMyQuizzes()
     yield put(actions.getMyQuizzes.success(quizes))
-  } catch (exception) {
-    console.log(exception)
-    yield put(actions.getMyQuizzes.failure(exception))
+  } catch (error) {
+    yield put(setError.success(error.toString()))
   }
 }
 
@@ -17,19 +18,16 @@ function* getQuiz({ payload }) {
     const quiz = yield fetchQuiz(payload.id)
     yield put(actions.getQuiz.success(quiz))
   } catch (error) {
-    console.log('Fetch Quiz error: ', error)
-    yield put(actions.getQuiz.failure(error))
+    yield put(setError.success(error.toString()))
   }
 }
 
 function* sendQuiz({ payload }) {
   try {
-    console.log('putQuiz: ', payload)
     yield putQuiz(payload.id, payload.quiz)
     yield put(actions.getQuiz.success(null))
   } catch (error) {
-    console.log('Fetch Quiz error: ', error)
-    yield put(actions.putQuiz.failure(error))
+    yield put(setError.success(error.toString()))
   }
 }
 

@@ -1,9 +1,7 @@
 import styled from 'styled-components'
 import { COLOR_INPUT_BACKGROUND } from 'src/lib/cssvars'
-import { Constants } from 'expo'
 
 export const Container = styled.KeyboardAvoidingView`
-  padding-top: ${Constants.statusBarHeight};
   flex: 1;
 `
 export const Content = styled.View`

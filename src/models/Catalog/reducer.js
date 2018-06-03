@@ -3,6 +3,7 @@ import * as actions from './actions'
 const initialState = {
   quizes: null,
   quiz: null,
+  loading: false,
 }
 
 export default (state = initialState, { type, payload }) => {
@@ -13,10 +14,10 @@ export default (state = initialState, { type, payload }) => {
         ...state,
         quizes: payload.list,
       }
-    case actions.setQuiz.SUCCESS_TYPE:
+    case actions.setLoading.SUCCESS_TYPE:
       return {
         ...state,
-        quiz: payload.quiz,
+        loading: payload.loading,
       }
 
     default:

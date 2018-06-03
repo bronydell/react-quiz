@@ -10,3 +10,6 @@ export const COLOR_DISABLED_BUTTON = '#575757'
 export const COLOR_DISABLED_SHADOW_BUTTON = '#191919'
 export const COLOR_TITLE_TEXT = 'black'
 export const COLOR_INPUT_BACKGROUND = 'rgba(142, 142, 147, 0.21)'
+
+export const COLOR_WHITE = '#fff'
+export const COLOR_BLACK_TRANSLUCENT = 'rgba(31, 33, 37, 0.7)'

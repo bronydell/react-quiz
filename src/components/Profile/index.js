@@ -1,31 +1,39 @@
 import React from 'react'
-import Title from 'src/components/Title'
+import Header from 'src/components/Header'
 import PlainText from 'src/components/PlainText'
 import Button from 'src/components/Button'
 
 import {
   Container,
   Content,
-  TitleWrapper,
   InfoWrapper,
   RowWrapper,
+  EmptySpace,
+  ButtonsWrapper,
 } from './styles'
 
 class ProfilePage extends React.Component {
   render() {
     return pug`
       Container(behavior="padding")
+        Header Your profile
         Content
-          TitleWrapper
-            Title Your profile
           InfoWrapper
             if this.props.user
               PlainText= "Hello, "+this.props.user.displayName+"!"
-            PlainText= "You've finished 0 quizzes and got 0 points"
-          RowWrapper
-            Button(onPress=this.props.logOut)= "Sign out"
+          EmptySpace
+          ButtonsWrapper
+            RowWrapper
+              Button(
+                onPress=this.props.confirmEmail
+                disabled=this.confirmedEmail()
+              )= "Confirm Email"
+            RowWrapper
+              Button(onPress=this.props.logOut)= "Sign out"
     `
   }
+
+  confirmedEmail = () => this.props.user.emailVerified
 }
 
 export default ProfilePage

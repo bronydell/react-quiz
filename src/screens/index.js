@@ -1,4 +1,4 @@
-import { StackNavigator, SwitchNavigator } from 'react-navigation'
+import { createStackNavigator, createSwitchNavigator } from 'react-navigation'
 
 import MenuScreen from 'src/screens/Menu'
 import MyQuizzesScreen from 'src/screens/MyQuizzes'
@@ -15,7 +15,7 @@ const navigationOptions = {
   headerMode: 'None',
 }
 
-const ApplicationStack = StackNavigator({
+const ApplicationStack = createStackNavigator({
   Menu: {
     screen: MenuScreen,
   },
@@ -43,7 +43,7 @@ const ApplicationStack = StackNavigator({
   initialRouteName: 'Menu',
 })
 
-const QuizStack = StackNavigator({
+const QuizStack = createStackNavigator({
   Game: {
     screen: QuizScreen,
   },
@@ -53,7 +53,7 @@ const QuizStack = StackNavigator({
   initialRouteName: 'Game',
 })
 
-const IntroStack = StackNavigator({
+const IntroStack = createStackNavigator({
   Intro: {
     screen: Intro,
   },
@@ -63,7 +63,7 @@ const IntroStack = StackNavigator({
   initialRouteName: 'Intro',
 })
 
-const ResultStack = StackNavigator({
+const ResultStack = createStackNavigator({
   QuizResult: {
     screen: QuizResultScreen,
   },
@@ -73,7 +73,7 @@ const ResultStack = StackNavigator({
   initialRouteName: 'QuizResult',
 })
 
-export default SwitchNavigator(
+export default createSwitchNavigator(
   {
     Intro: IntroStack,
     Application: ApplicationStack,

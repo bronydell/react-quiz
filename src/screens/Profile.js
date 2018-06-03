@@ -11,7 +11,9 @@ class ProfileScreen extends React.Component {
   }
 
   componentWillReceiveProps(nextProps) {
-    this.setScreen(nextProps)
+    if (nextProps.user !== this.props.user) {
+      this.setScreen(nextProps)
+    }
   }
 
   render() {
@@ -40,7 +42,7 @@ class ProfileScreen extends React.Component {
   }
 
   setScreen = (nextProps) => {
-    const screenName = nextProps.user === null ? 'login' : 'profile'
+    const screenName = nextProps.user == null ? 'login' : 'profile'
     this.props.setScreen(screenName)
   }
 }
