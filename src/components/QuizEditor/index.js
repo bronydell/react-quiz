@@ -1,11 +1,16 @@
 import React from 'react'
 import { NavigationActions } from 'react-navigation'
-import Title from 'src/components/Title'
+import Header from 'src/components/Header'
 import Button from 'src/components/Button'
 import InputField from 'src/components/InputField'
 import PlainText from 'src/components/PlainText'
 import QuestionList from 'src/components/QuestionList'
-import { Container, BottomButtonWrapper, EmptySpace } from './styles'
+import {
+  Container,
+  BottomButtonWrapper,
+  EmptySpace,
+  Content,
+} from './styles'
 
 class QuizEditor extends React.Component {
   constructor(props) {
@@ -37,33 +42,34 @@ class QuizEditor extends React.Component {
     }
     return pug`
       Container
-        Title= "Quiz editor"
-        PlainText= "Quiz title:"
-        InputField(
-          text=this.state.title
-          onChange=this.onChangeTitle
-        )= "Quiz title"
-        PlainText= "Quiz description:"
-        InputField(
-          text=this.state.description
-          onChange=this.onChangeDescription
-        )= "Quiz title"
-        PlainText= "Question list:"
-        QuestionList(
-          data=this.props.quiz.questions
-          onItemPress=this.onQuestion
-          onItemDelete=this.onDeleteQuestion
-        )
-        EmptySpace
-        BottomButtonWrapper
-          Button(
-            onPress=this.onNewQuestion
-          )= "Create new Question"
-        BottomButtonWrapper
-          Button(
-            onPress=this.onPublish
-            disabled=!this.canPublish()
-          )= "Publish"
+        Header= "Quiz editor"
+        Content
+          PlainText= "Quiz title:"
+          InputField(
+            text=this.state.title
+            onChange=this.onChangeTitle
+          )= "Quiz title"
+          PlainText= "Quiz description:"
+          InputField(
+            text=this.state.description
+            onChange=this.onChangeDescription
+          )= "Quiz title"
+          PlainText= "Question list:"
+          QuestionList(
+            data=this.props.quiz.questions
+            onItemPress=this.onQuestion
+            onItemDelete=this.onDeleteQuestion
+          )
+          EmptySpace
+          BottomButtonWrapper
+            Button(
+              onPress=this.onNewQuestion
+            )= "Create new Question"
+          BottomButtonWrapper
+            Button(
+              onPress=this.onPublish
+              disabled=!this.canPublish()
+            )= "Publish"
     `
   }
 

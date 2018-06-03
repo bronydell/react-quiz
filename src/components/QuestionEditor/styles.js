@@ -1,11 +1,10 @@
 import styled from 'styled-components'
-import { Constants } from 'expo'
 
 export const Container = styled.KeyboardAvoidingView`
-  padding-top: ${Constants.statusBarHeight};
   flex-grow: 1;
 `
 export const Content = styled.ScrollView`
+ flex: 1;
 `
 
 export const EmptySpace = styled.View`

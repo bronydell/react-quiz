@@ -1,5 +1,5 @@
 import React from 'react'
-import Title from 'src/components/Title'
+import Header from 'src/components/Header'
 import Button from 'src/components/Button'
 import Text from 'src/components/PlainText'
 
@@ -7,7 +7,6 @@ import {
   Container,
   Content,
   DetailsWrapper,
-  TitleWrapper,
 } from './styles'
 
 class QuizDetails extends React.Component {
@@ -28,18 +27,16 @@ class QuizDetails extends React.Component {
   render() {
     return pug`
       Container
-        TitleWrapper
-          Title= "Quiz details"
+        Header= "Quiz details"
         Content
           DetailsWrapper
             Text= "Description: "+this.state.quiz.description
-            Text= "Author: Somebody once told me"
+            Text= "Author: "+this.state.quiz.displayName
           Button(onPress=this.onStart)= "Start test"
     `
   }
 
   onStart = () => {
-    console.log('Start quiz!')
     this.props.startQuiz(this.state.quiz.key)
   }
 }

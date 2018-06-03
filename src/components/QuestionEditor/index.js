@@ -1,5 +1,5 @@
 import React from 'react'
-import Title from 'src/components/Title'
+import Header from 'src/components/Header'
 import Button from 'src/components/Button'
 import InputField from 'src/components/InputField'
 import PlainText from 'src/components/PlainText'
@@ -15,11 +15,11 @@ class QuestionEditor extends React.Component {
       data: [
         {
           key: '0',
-          title: 'Hello',
+          title: '',
         },
         {
           key: '1',
-          title: 'World',
+          title: '',
         },
       ],
     }
@@ -31,7 +31,6 @@ class QuestionEditor extends React.Component {
         data: this.parseData(),
       }
     }
-    console.log('Editor state:', this.state)
   }
 
   componentWillUnmount() {
@@ -41,7 +40,7 @@ class QuestionEditor extends React.Component {
   render() {
     return pug`
       Container(behavior="padding" enabled)
-        Title= "Question editor"
+        Header= "Question editor"
         Content(alwaysBounceVertical=false)
           PlainText= "Question text:"
           InputField(

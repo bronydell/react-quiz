@@ -1,27 +1,26 @@
 import React from 'react'
-import Title from 'src/components/Title'
+import Header from 'src/components/Header'
 import PlainText from 'src/components/PlainText'
 import Button from 'src/components/Button'
 
 import {
   Container,
   Content,
-  TitleWrapper,
   InfoWrapper,
   RowWrapper,
+  EmptySpace,
 } from './styles'
 
 class ProfilePage extends React.Component {
   render() {
     return pug`
       Container(behavior="padding")
+        Header Your profile
         Content
-          TitleWrapper
-            Title Your profile
           InfoWrapper
             if this.props.user
               PlainText= "Hello, "+this.props.user.displayName+"!"
-            PlainText= "You've finished 0 quizzes and got 0 points"
+          EmptySpace
           RowWrapper
             Button(onPress=this.props.logOut)= "Sign out"
     `

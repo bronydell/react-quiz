@@ -1,8 +1,6 @@
 import styled from 'styled-components'
-import { Constants } from 'expo'
 
 export const Container = styled.KeyboardAvoidingView`
-  padding-top: ${Constants.statusBarHeight};
   flex: 1;
 `
 export const Content = styled.View`
@@ -16,6 +14,10 @@ export const InfoWrapper = styled.View`
   padding-bottom: 16;
 `
 
+export const EmptySpace = styled.View`
+  flex: 1;
+`
+
 export const TitleWrapper = styled.View`
   padding-top: 8;
   justify-content: center;
@@ -24,5 +26,6 @@ export const TitleWrapper = styled.View`
 
 export const RowWrapper = styled.View`
   padding-top: 8;
+  padding-bottom: 16;
   width: 100%;
 `

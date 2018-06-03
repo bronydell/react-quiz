@@ -1,10 +1,7 @@
 import React from 'react'
-import Title from 'src/components/Title'
+import Header from 'src/components/Header'
 import QuizList from 'src/components/QuizList'
-import {
-  Container,
-  TitleWrapper,
-} from './styles'
+import { Container, Content } from './styles'
 
 class QuizCatalog extends React.Component {
   componentDidMount() {
@@ -14,12 +11,12 @@ class QuizCatalog extends React.Component {
   render() {
     return pug`
       Container
-        TitleWrapper
-          Title= "Quiz Catalog"
-        QuizList(
-          data=this.props.data
-          onItemPress=this.onDetails
-        )
+        Header= "Quiz Catalog"
+        Content
+          QuizList(
+            data=this.props.data
+            onItemPress=this.onDetails
+          )
     `
   }
 
