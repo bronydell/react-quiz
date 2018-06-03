@@ -21,6 +21,10 @@ class Menu extends React.Component {
   }
 
   onMyQuizList = () => {
+    if (this.props.user == null) {
+      this.props.setError('To use editor, please, sign in')
+      return
+    }
     this.props.navigation.navigate('MyQuizzes')
   }
 

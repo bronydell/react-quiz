@@ -1,5 +1,8 @@
 import { all, call, put, takeEvery } from 'redux-saga/effects'
 import firebase from 'firebase'
+
+import { setError } from 'src/models/Global/actions'
+
 import * as actions from './actions'
 import * as persistence from './persistence'
 
@@ -11,7 +14,7 @@ function* logIn({ payload }) {
     yield persistence.setPassword(payload.password)
     yield put(actions.logIn.success(user))
   } catch (error) {
-    yield put(actions.logIn.failure(error))
+    yield put(setError.success(error.toString()))
   }
 }
 
@@ -32,7 +35,7 @@ function* register({ payload }) {
     yield persistence.setPassword(payload.password)
     yield put(actions.register.success(user))
   } catch (error) {
-    yield put(actions.register.failure(error))
+    yield put(setError.success(error.toString()))
   }
 }
 
@@ -42,7 +45,6 @@ function* getUser() {
     const password = yield persistence.getPassword()
     const user = yield firebase.auth()
       .signInWithEmailAndPassword(email, password)
-    console.log('Loged in as', user)
     yield put(actions.getUser.success(user))
   } catch (error) {
     yield persistence.setLogin(null)
@@ -58,7 +60,7 @@ function* logOut() {
     yield persistence.setPassword(null)
     yield put(actions.logOut.success())
   } catch (error) {
-    yield put(actions.logOut.failure())
+    yield put(setError.success(error.toString()))
   }
 }
 

@@ -40,8 +40,10 @@ class ProfileScreen extends React.Component {
   }
 
   setScreen = (nextProps) => {
-    const screenName = nextProps.user === null ? 'login' : 'profile'
-    this.props.setScreen(screenName)
+    if (nextProps.user !== this.props.user) {
+      const screenName = nextProps.user === null ? 'login' : 'profile'
+      this.props.setScreen(screenName)
+    }
   }
 }
 

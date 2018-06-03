@@ -1,6 +1,5 @@
 import React from 'react'
 import PropTypes from 'prop-types'
-import _ from 'lodash'
 
 import {
   COLOR_PRIMARY_BUTTON_SHADOW,
@@ -11,12 +10,6 @@ import {
 import { Container, Text } from './styles'
 
 class Button extends React.Component {
-  constructor(props) {
-    super(props)
-    if (this.props.debounced) {
-      this.onPress = _.debounce(this.onPress, 250)
-    }
-  }
   render() {
     const primaryColor = this.props.disabled ? COLOR_DISABLED_BUTTON : this.props.primaryColor
     const shadowColor = this.props.disabled ? COLOR_DISABLED_SHADOW_BUTTON : this.props.shadowColor

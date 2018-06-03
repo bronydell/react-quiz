@@ -4,6 +4,8 @@ import { Constants } from 'expo'
 export const Container = styled.ScrollView`
   padding-top: ${Constants.statusBarHeight};
   flex-grow: 1;
+  padding-left: 8l
+  padding-right: 8l
 `
 
 export const EmptySpace = styled.View`

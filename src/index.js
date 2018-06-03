@@ -12,8 +12,8 @@ import {
 } from 'react-native-dotenv'
 
 import store from 'src/store'
-import Screens from 'src/screens'
 import ViewGrow from 'src/components/ViewGrow'
+import GlobalContainer from 'src/containers/GlobalScreen'
 
 const config = {
   apiKey,
@@ -42,11 +42,12 @@ class Application extends React.PureComponent {
   }
 
   render() {
+    console.log('Store:', store)
     return pug`
       Provider(store=store)
         ViewGrow
           if this.state.isReady
-            Screens
+            GlobalContainer
     `
   }
 }
